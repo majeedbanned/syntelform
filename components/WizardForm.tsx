@@ -1,155 +1,229 @@
 "use client";
-
+import { useForm, FormProvider } from "react-hook-form";
 import { useState } from "react";
-import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
+import StepOne from "./StepOne";
 import StepThree from "./StepThree";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import StepFour from "./StepFour";
 import StepFive from "./StepFive";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useTranslation } from "react-i18next";
-import i18n from "../i18n";
-
-i18n.changeLanguage("en");
-
-const stepSchemas = [
-  {
-    countryOfResidency: "",
-    areYouResident: false,
-    areYouNationality: false,
-    countryOfNationality: "",
-    passportNumber: "",
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    title: "",
-    nationality: "",
-    email: "",
-    dateOfBirth: "",
-    password: "",
-  },
-  {
-    buildingNoAndStreet: "",
-    townOrCity: "",
-    state: "",
-    country: "",
-    currentState: "",
-    currentCountry: "",
-    currentPOBox: "",
-  },
-  {
-    employmentStatus: "",
-    otherEmploymentDetails: "",
-    employmentIndustry: "",
-    companyName: "",
-    isBoardMember: "",
-  },
-  {
-    annualIncome: "",
-  },
-  {
-    applicableStatements: [],
-    desiredClassification: "",
-  },
-];
+import StepSix from "./StepSix";
 
 const WizardForm = () => {
-  const { t } = useTranslation();
-  const [step, setStep] = useState<number>(3);
-  const methods = useForm({
-    defaultValues: stepSchemas[step - 1],
-    mode: "onBlur",
-  });
-
+  const [step, setStep] = useState(1);
+  const methods = useForm({ mode: "onSubmit" });
+  const router = useRouter();
   const {
     handleSubmit,
+    register,
     formState: { errors },
   } = methods;
-  const router = useRouter();
 
-  const onNext: SubmitHandler<any> = (data) => {
-    console.log("next");
+  const onSubmit = (data) => {
+    console.log(data);
+    // Handle final submission here (e.g., API call)
+    alert("Form submitted successfully!");
+    router.push("/thank-you");
+  };
 
-    if (Object.keys(errors).length === 0) {
-      setStep(step + 1);
-    } else {
-      console.log("Validation Errors", errors);
+  const nextStep = async () => {
+    if (step === 1) {
+      const isValid = await methods.trigger([
+        "title",
+        "firstName",
+        "middleName",
+        "lastName",
+        "passportNumber",
+        "email",
+        "countryOfResidence",
+        "otherNationality",
+        "otherNationalityCountry",
+        "residentOtherCountries",
+        "residentOtherCountriesName",
+      ]);
+      if (isValid) {
+        setStep((prev) => Math.min(prev + 1, 7));
+      }
+    } else if (step === 2) {
+      const isValid = await methods.trigger([
+        "BuildingNo",
+        "TownCity",
+        "State",
+        "country",
+        "POBox",
+        "currentresidential",
+        "cuBuildingNo",
+        "cuTownCity",
+        "cuState",
+        "cucountry",
+        "cuPOBox",
+      ]);
+      if (isValid) {
+        setStep((prev) => Math.min(prev + 1, 7));
+      }
+    } else if (step === 3) {
+      const isValid = await methods.trigger([
+        "Employment",
+        "EmploymentOther",
+        "Profession",
+        "CompanyName",
+        "AreyouMemberof",
+        "CurrentPosition",
+      ]);
+      if (isValid) {
+        setStep((prev) => Math.min(prev + 1, 7));
+      }
+    } else if (step === 4) {
+      const isValid = await methods.trigger([
+        "AnnualIncome",
+        "ValueofSavings",
+        "SourceofWealth",
+        "Otherpleasespecify",
+        "expecteddeposit",
+        "InvestmentObjective",
+      ]);
+      if (isValid) {
+        setStep((prev) => Math.min(prev + 1, 7));
+      }
+    } else if (step === 5) {
+      const isValid = await methods.trigger([
+        "employedbyfinancial",
+        "ValueofSavings",
+        "SourceofWealth",
+        "Otherpleasespecify",
+        "expecteddeposit",
+        "InvestmentObjective",
+      ]);
+      if (isValid) {
+        setStep((prev) => Math.min(prev + 1, 7));
+      }
+    } else if (step === 6) {
+      const isValid = await methods.trigger([
+        "ExchangeTradedDerivatives",
+        "CounterDerivatives",
+        "mostlytraded",
+        "independentlytraded",
+        "Previoustradingvolume",
+        "experienceintradingleverage",
+        "levelofeducation",
+      ]);
+      if (isValid) {
+        setStep((prev) => Math.min(prev + 1, 7));
+      }
+    } else if (step === 7) {
+      const isValid = await methods.trigger(["ExchangeTradedDerivatives"]);
+      if (isValid) {
+        setStep((prev) => Math.min(prev + 1, 7));
+      }
     }
   };
-
-  const onPrev = () => {
-    console.log("previews");
-
-    if (step > 1) {
-      setStep(step - 1);
-    }
-  };
-
-  const onSubmit: SubmitHandler<any> = (data) => {
-    alert("Form submitted successfully");
-    router.push("/success");
-  };
+  const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
   return (
     <FormProvider {...methods}>
-      <Card className="p-6">
-        <Tabs value={`step-${step}`} className="mb-6">
-          <TabsList>
-            <TabsTrigger value="step-1" disabled>
-              {t("step1")}
-            </TabsTrigger>
-            <TabsTrigger value="step-2" disabled>
-              {t("step2")}
-            </TabsTrigger>
-            <TabsTrigger value="step-3" disabled>
-              {t("step3")}
-            </TabsTrigger>
-            <TabsTrigger value="step-4" disabled>
-              {t("step4")}
-            </TabsTrigger>
-            <TabsTrigger value="step-5" disabled>
-              {t("step5")}
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
-        <div>
-          {step === 1 && <StepOne />}
-          {step === 2 && <StepTwo />}
-          {step === 3 && <StepThree />}
-          {step === 4 && <StepFour />}
-          {step === 5 && <StepFive />}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="max-w-screen-xl mx-auto p-4 bg-white rounded-lg shadow-md space-y-6"
+      >
+        <div className="flex justify-between mb-4">
+          <button
+            type="button"
+            onClick={() => setStep(1)}
+            className={`px-4 py-2 ${
+              step === 1 ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+          >
+            Section 1
+          </button>
+          <button
+            type="button"
+            onClick={() => setStep(2)}
+            className={`px-4 py-2 ${
+              step === 2 ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+          >
+            Section 2
+          </button>
+          <button
+            type="button"
+            onClick={() => setStep(3)}
+            className={`px-4 py-2 ${
+              step === 3 ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+          >
+            Section 3
+          </button>
 
-          <div className="mt-4 flex space-x-2">
-            {step > 1 && (
-              <Button variant="secondary" onClick={onPrev}>
-                {t("previous")}
-              </Button>
-            )}
-            {step < 5 && (
-              <Button onClick={methods.handleSubmit(onNext)}>
-                {t("next")}
-              </Button>
-            )}
-            {step === 5 && (
-              <Button onClick={methods.handleSubmit(onSubmit)}>
-                {t("submit")}
-              </Button>
-            )}
-          </div>
+          <button
+            type="button"
+            onClick={() => setStep(4)}
+            className={`px-4 py-2 ${
+              step === 4 ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+          >
+            Section 4
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setStep(5)}
+            className={`px-4 py-2 ${
+              step === 5 ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+          >
+            Section 5
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setStep(6)}
+            className={`px-4 py-2 ${
+              step === 6 ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+          >
+            Section 6
+          </button>
         </div>
-      </Card>
+
+        {step === 1 && <StepOne></StepOne>}
+
+        {step === 2 && <StepTwo></StepTwo>}
+
+        {step === 3 && <StepThree></StepThree>}
+
+        {step === 4 && <StepFour></StepFour>}
+        {step === 5 && <StepFive></StepFive>}
+        {step === 6 && <StepSix></StepSix>}
+
+        <div className="flex justify-between mt-6">
+          {step > 1 && (
+            <button
+              type="button"
+              onClick={prevStep}
+              className="px-4 py-2 bg-gray-300 rounded"
+            >
+              Previous
+            </button>
+          )}
+          {step < 7 && (
+            <button
+              type="button"
+              onClick={nextStep}
+              className="px-4 py-2 bg-blue-500 text-white rounded"
+            >
+              Next
+            </button>
+          )}
+          {step === 7 && (
+            <button
+              type="submit"
+              className="px-4 py-2 bg-green-500 text-white rounded"
+            >
+              Submit
+            </button>
+          )}
+        </div>
+      </form>
     </FormProvider>
   );
 };

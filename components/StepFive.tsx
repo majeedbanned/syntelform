@@ -11,7 +11,7 @@ const StepFive = () => {
     setValue,
     getValues,
     formState: { errors },
-  } = useFormContext<StepFiveFormData>();
+  } = useFormContext<any>();
 
   const applicableStatements = [
     "Have you been employed by a regulated financial institution within the last 2 years?",
@@ -31,24 +31,70 @@ const StepFive = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">{t("step5")}</h2>
+      <h2 className="text-xl font-bold mb-4">{"5.Client Classification"}</h2>
       <div className="grid grid-cols-1 gap-4">
         <div>
           <label className="block font-medium mb-1">
-            {t("applicableStatements")}
+            {
+              "Please tick all boxes below that correspond with a statement that is applicable to you:"
+            }
           </label>
-          <div className="flex flex-col space-y-2">
-            {applicableStatements.map((statement) => (
-              <label key={statement} className="inline-flex items-center">
-                <input
-                  type="checkbox"
-                  value={statement}
-                  {...register("applicableStatements")}
-                  className="form-checkbox"
-                />
-                <span className="ml-2">{t(statement)}</span>
-              </label>
-            ))}
+          <div className="flex items-center space-x-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Have you been employed by a regulated financial institution within
+              the last 2 years?
+            </label>
+            <input
+              type="checkbox"
+              {...register("employedbyfinancial")}
+              className="h-5 w-5 text-blue-600 border-gray-300 rounded"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block font-medium mb-1"></label>
+          <div className="flex items-center space-x-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Are you accredited by the UAE Securities and Commodities Authority
+              (SCA) or a similar supervisory authority, or represented by a body
+              licensed by the SCA?
+            </label>
+            <input
+              type="checkbox"
+              {...register("employedbyfinancial")}
+              className="h-5 w-5 text-blue-600 border-gray-300 rounded"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block font-medium mb-1"></label>
+          <div className="flex items-center space-x-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Do you have expert knowledge and experience in the field of
+              investment and the associated risks?
+            </label>
+            <input
+              type="checkbox"
+              {...register("employedbyfinancial")}
+              className="h-5 w-5 text-blue-600 border-gray-300 rounded"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block font-medium mb-1"></label>
+          <div className="flex items-center space-x-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Do you own assets with a combined worth of at least AED 4 million
+              (approx. USD 1.1 million)?
+            </label>
+            <input
+              type="checkbox"
+              {...register("employedbyfinancial")}
+              className="h-5 w-5 text-blue-600 border-gray-300 rounded"
+            />
           </div>
         </div>
 

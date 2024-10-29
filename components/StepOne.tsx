@@ -1,225 +1,257 @@
-// StepOne component without Zod validation
-"use client";
 import { useFormContext } from "react-hook-form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import { useState } from "react";
-
-const countries = [
-  "Afghanistan",
-  "Albania",
-  "Algeria",
-  "Andorra",
-  "Angola",
-  "Antigua and Barbuda",
-  "Argentina",
-  "Armenia",
-  "Australia",
-  "Austria",
-  "Azerbaijan",
-];
 
 const StepOne = () => {
   const {
     register,
-    setValue,
-    getValues,
     formState: { errors },
+    watch,
   } = useFormContext();
-  const [selectedCountry, setSelectedCountry] = useState<string | undefined>(
-    getValues("nationality")
-  );
-
-  const handleCountryChange = (country: string) => {
-    setSelectedCountry(country);
-    setValue("nationality", country);
-  };
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Step 1: Personal Information</h2>
-      <div className="grid grid-cols-3 gap-4">
-        <div>
-          <label className="block font-medium mb-1">
-            First Name
-            {errors.firstName && (
-              <span className="text-red-600 text-sm ml-2">
-                <strong>{errors.firstName.message}</strong>
-              </span>
-            )}
-          </label>
-          <Input
-            {...register("firstName", { required: "First Name is required" })}
-            placeholder="First Name"
-          />
-        </div>
+    <div className="space-y-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <h2 className="text-xl font-semibold">Section 1</h2>
 
-        <div>
-          <label className="block font-medium mb-1">
-            Last Name
-            {errors.lastName && (
-              <span className="text-red-600 text-sm ml-2">
-                <strong>{errors.lastName.message}</strong>
-              </span>
-            )}
-          </label>
-          <Input
-            {...register("lastName", { required: "Last Name is required" })}
-            placeholder="Last Name"
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">
-            Passport Number
-            {errors.passportNumber && (
-              <span className="text-red-600 text-sm ml-2">
-                <strong>{errors.passportNumber.message}</strong>
-              </span>
-            )}
-          </label>
-          <Input
-            {...register("passportNumber", {
-              required: "Passport Number is required",
-            })}
-            placeholder="Passport Number"
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">
-            Phone Number
-            {errors.phoneNumber && (
-              <span className="text-red-600 text-sm ml-2">
-                <strong>{errors.phoneNumber.message}</strong>
-              </span>
-            )}
-          </label>
-          <Input
-            {...register("phoneNumber", {
-              required: "Phone Number is required",
-            })}
-            placeholder="Phone Number"
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">
+      <div>
+        <div className="flex flex-row">
+          <label className="block text-sm font-medium text-gray-700">
             Title
-            {errors.title && (
-              <span className="text-red-600 text-sm ml-2">
-                <strong>{errors.title.message}</strong>
-              </span>
-            )}
           </label>
-          <Select
-            value={getValues("title")}
-            onValueChange={(value) => setValue("title", value)}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select Title" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Mr">Mr</SelectItem>
-              <SelectItem value="Ms">Ms</SelectItem>
-            </SelectContent>
-          </Select>
+          {errors.title && (
+            <span className="text-red-500 text-sm ml-auto">
+              {errors.title.message}
+            </span>
+          )}
         </div>
 
-        <div>
-          <label className="block font-medium mb-1">
-            Nationality
-            {errors.nationality && (
-              <span className="text-red-600 text-sm ml-2">
-                <strong>{errors.nationality.message}</strong>
-              </span>
-            )}
-          </label>
-          <Select
-            value={selectedCountry}
-            onValueChange={handleCountryChange}
-            className={errors.nationality ? "error" : ""}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select Nationality" />
-            </SelectTrigger>
-            <SelectContent>
-              {countries.map((country) => (
-                <SelectItem key={country} value={country}>
-                  {country}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        <select
+          className="w-full p-2 border rounded"
+          {...register("title", { required: "Title is required" })}
+        >
+          <option value="">Title</option>
+          <option value="MR">MR</option>
+          <option value="Ms">Ms</option>
+        </select>
+      </div>
 
-        <div>
-          <label className="block font-medium mb-1">
+      <div>
+        <div className="flex flex-row">
+          <label className="block text-sm font-medium text-gray-700">
+            First Name
+          </label>
+          {errors.firstName && (
+            <span className="text-red-500 text-sm ml-auto">
+              {errors.firstName.message}
+            </span>
+          )}
+        </div>
+        <input
+          className="w-full p-2 border rounded"
+          placeholder="First Name"
+          {...register("firstName", {
+            required: "First name is required",
+          })}
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700">
+          Middle Name
+        </label>
+        <input
+          className="w-full p-2 border rounded"
+          placeholder="Middle Name"
+          {...register("middleName")}
+        />
+      </div>
+
+      <div>
+        <div className="flex flex-row">
+          <label className="block text-sm font-medium text-gray-700">
+            Last Name
+          </label>
+          {errors.lastName && (
+            <span className="text-red-500 text-sm ml-auto">
+              {errors.lastName.message}
+            </span>
+          )}
+        </div>
+        <input
+          className="w-full p-2 border rounded"
+          placeholder="Last Name"
+          {...register("lastName", { required: "Last name is required" })}
+        />
+      </div>
+
+      <div>
+        <div className="flex flex-row">
+          <label className="block text-sm font-medium text-gray-700">
+            Passport Number
+          </label>
+          {errors.passportNumber && (
+            <span className="text-red-500 text-sm ml-auto">
+              {errors.passportNumber.message}
+            </span>
+          )}
+        </div>
+        <input
+          className="w-full p-2 border rounded"
+          placeholder="Passport Number"
+          {...register("passportNumber", {
+            required: "Passport number is required",
+          })}
+        />
+      </div>
+
+      <div>
+        <div className="flex flex-row">
+          <label className="block text-sm font-medium text-gray-700">
             Email
-            {errors.email && (
-              <span className="text-red-600 text-sm ml-2">
-                <strong>{errors.email.message}</strong>
-              </span>
-            )}
           </label>
-          <Input
-            type="email"
-            {...register("email", {
-              required: "Email is required",
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "Invalid email address",
-              },
-            })}
-            placeholder="Email"
-          />
+          {errors.email && (
+            <span className="text-red-500 text-sm ml-auto">
+              {errors.email.message}
+            </span>
+          )}
         </div>
+        <input
+          className="w-full p-2 border rounded"
+          type="email"
+          placeholder="Email"
+          {...register("email", { required: "Email is required" })}
+        />
+      </div>
 
-        <div>
-          <label className="block font-medium mb-1">
-            Date of Birth
-            {errors.dateOfBirth && (
-              <span className="text-red-600 text-sm ml-2">
-                <strong>{errors.dateOfBirth.message}</strong>
-              </span>
-            )}
+      <div>
+        <div className="flex flex-row">
+          <label className="block text-sm font-medium text-gray-700">
+            Country of Residence
           </label>
-          <Input
-            type="date"
-            {...register("dateOfBirth", {
-              required: "Date of Birth is required",
-            })}
-            placeholder="Date of Birth"
-          />
+          {errors.countryOfResidence && (
+            <span className="text-red-500 text-sm ml-auto">
+              {errors.countryOfResidence.message}
+            </span>
+          )}
         </div>
+        <select
+          className="w-full p-2 border rounded"
+          {...register("countryOfResidence", {
+            required: "Country of residence is required",
+          })}
+        >
+          <option value="">Country of Residence</option>
+          <option value="USA">USA</option>
+          <option value="Canada">Canada</option>
+          <option value="UK">UK</option>
+          <option value="Australia">Australia</option>
+          <option value="India">India</option>
+        </select>
+      </div>
 
-        <div>
-          <label className="block font-medium mb-1">
-            Password
-            {errors.password && (
-              <span className="text-red-600 text-sm ml-2">
-                <strong>{errors.password.message}</strong>
+      <div>
+        <label className="block text-sm font-medium text-gray-700">
+          Are you holding any other nationality?
+        </label>
+        <div className="flex items-center space-x-4">
+          <label className="inline-flex items-center">
+            <input
+              type="radio"
+              value="Yes"
+              {...register("otherNationality", {
+                required: "This field is required",
+              })}
+            />{" "}
+            Yes
+          </label>
+          <label className="inline-flex items-center">
+            <input
+              type="radio"
+              value="No"
+              {...register("otherNationality", {
+                required: "This field is required",
+              })}
+            />{" "}
+            No
+          </label>
+        </div>
+        {errors.otherNationality && (
+          <span className="text-red-500 text-sm">
+            {errors.otherNationality.message}
+          </span>
+        )}
+
+        {watch("otherNationality") === "Yes" && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Please specify the country name
+            </label>
+            <input
+              className="w-full p-2 border rounded"
+              placeholder="Please specify the country name"
+              {...register("otherNationalityCountry", {
+                required:
+                  "Country name is required if holding another nationality",
+              })}
+            />
+            {errors.otherNationalityCountry && (
+              <span className="text-red-500 text-sm">
+                {errors.otherNationalityCountry.message}
               </span>
             )}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700">
+          Are you a resident of any other countries?
+        </label>
+        <div className="flex items-center space-x-4">
+          <label className="inline-flex items-center">
+            <input
+              type="radio"
+              value="Yes"
+              {...register("residentOtherCountries", {
+                required: "This field is required",
+              })}
+            />{" "}
+            Yes
           </label>
-          <Input
-            type="password"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters long",
-              },
-            })}
-            placeholder="Password"
-          />
+          <label className="inline-flex items-center">
+            <input
+              type="radio"
+              value="No"
+              {...register("residentOtherCountries", {
+                required: "This field is required",
+              })}
+            />{" "}
+            No
+          </label>
         </div>
+        {errors.residentOtherCountries && (
+          <span className="text-red-500 text-sm">
+            {errors.residentOtherCountries.message}
+          </span>
+        )}
+        {watch("residentOtherCountries") === "Yes" && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Please specify the country name
+            </label>
+            <input
+              className="w-full p-2 border rounded"
+              placeholder="Please specify the country name"
+              {...register("residentOtherCountriesName", {
+                required:
+                  "Country name is required if resident of another country",
+              })}
+            />
+            {errors.residentOtherCountriesName && (
+              <span className="text-red-500 text-sm">
+                {errors.residentOtherCountriesName.message}
+              </span>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
