@@ -76,7 +76,7 @@ const Step2 = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full h-11 p-2 border rounded"
           {...register("country", {
             required: "required",
           })}
@@ -207,7 +207,7 @@ const Step2 = () => {
               )}
             </div>
             <select
-              className="w-full p-2 border rounded"
+              className="w-full h-11  p-2 border rounded"
               {...register("cucountry", {
                 required: " required",
               })}

@@ -31,10 +31,12 @@ const StepFive = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">{"5.Client Classification"}</h2>
+      <h2 className="text-xl mb-5 text-blue-600 border-[0px] flex items-center font-semibold">
+        {"Client Classification"}
+      </h2>
       <div className="grid grid-cols-1 gap-4">
         <div>
-          <label className="block font-medium mb-1">
+          <label className="block font-bold mb-1">
             {
               "Please tick all boxes below that correspond with a statement that is applicable to you:"
             }
@@ -99,7 +101,7 @@ const StepFive = () => {
         </div>
 
         <div className="mt-6">
-          <h3 className="font-medium mb-2">{t("assetsInclude")}</h3>
+          <h3 className="font-bold mb-2">{t("assetsInclude")}</h3>
           <ul className="list-disc list-inside">
             <li>
               {t(
@@ -142,7 +144,7 @@ const StepFive = () => {
                   handleClassificationChange("Professional Investor")
                 }
               />
-              <span className="ml-2">
+              <span className="ml-2 font-bold">
                 {t("I agree to be classified as a Professional Investor")}
               </span>
             </label>
@@ -154,7 +156,7 @@ const StepFive = () => {
                 className="form-radio"
                 onChange={() => handleClassificationChange("Ordinary Investor")}
               />
-              <span className="ml-2">
+              <span className="ml-2 font-bold">
                 {t("I request to be classified as an Ordinary Investor")}
               </span>
             </label>

@@ -9,7 +9,9 @@ const StepFour = () => {
 
   return (
     <div className="space-y-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-      <h2 className="text-xl font-semibold">4.Financial Information</h2>
+      <h2 className="text-xl text-blue-600 border-[0px] flex items-center font-semibold">
+        Financial Information
+      </h2>
 
       <div>
         <div className="flex flex-row">
@@ -23,7 +25,7 @@ const StepFour = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full h-11  p-2 border rounded"
           {...register("AnnualIncome", {
             required: "AnnualIncome details are required",
           })}
@@ -50,7 +52,7 @@ const StepFour = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full  h-11 p-2 border rounded"
           {...register("ValueofSavings", {
             required: "ValueofSavings details are required",
           })}
@@ -77,7 +79,7 @@ const StepFour = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full  h-11 p-2 border rounded"
           {...register("SourceofWealth", {
             required: "Source of Wealth details are required",
           })}
@@ -120,7 +122,7 @@ const StepFour = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full p-2  h-11 border rounded"
           {...register("expecteddeposit", {
             required: "expected deposit details are required",
           })}
@@ -147,7 +149,7 @@ const StepFour = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full h-11  p-2 border rounded"
           {...register("InvestmentObjective", {
             required: "Investment Objective  details are required",
           })}

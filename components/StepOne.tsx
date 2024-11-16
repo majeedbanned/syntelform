@@ -9,11 +9,13 @@ const StepOne = () => {
 
   return (
     <div className="space-y-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-      <h2 className="text-xl font-semibold">Section 1</h2>
+      <h2 className="text-xl text-blue-600 border-[0px] flex items-center font-semibold">
+        Personal Information
+      </h2>
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block font-light text-sm  text-gray-700">
             Title
           </label>
           {errors.title && (
@@ -24,10 +26,10 @@ const StepOne = () => {
         </div>
 
         <select
-          className="w-full p-2 border rounded"
+          className="w-full p-2 h-11 border rounded"
           {...register("title", { required: "Title is required" })}
         >
-          <option value="">Title</option>
+          <option value="">Please Select</option>
           <option value="MR">MR</option>
           <option value="Ms">Ms</option>
         </select>
@@ -35,7 +37,7 @@ const StepOne = () => {
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-light text-gray-700">
             First Name
           </label>
           {errors.firstName && (
@@ -46,7 +48,7 @@ const StepOne = () => {
         </div>
         <input
           className="w-full p-2 border rounded"
-          placeholder="First Name"
+          placeholder=" "
           {...register("firstName", {
             required: "First name is required",
           })}
@@ -54,19 +56,19 @@ const StepOne = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-sm font-light text-gray-700">
           Middle Name
         </label>
         <input
           className="w-full p-2 border rounded"
-          placeholder="Middle Name"
+          placeholder=""
           {...register("middleName")}
         />
       </div>
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-light text-gray-700">
             Last Name
           </label>
           {errors.lastName && (
@@ -77,14 +79,14 @@ const StepOne = () => {
         </div>
         <input
           className="w-full p-2 border rounded"
-          placeholder="Last Name"
+          placeholder=""
           {...register("lastName", { required: "Last name is required" })}
         />
       </div>
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-light text-gray-700">
             Passport Number
           </label>
           {errors.passportNumber && (
@@ -95,7 +97,7 @@ const StepOne = () => {
         </div>
         <input
           className="w-full p-2 border rounded"
-          placeholder="Passport Number"
+          placeholder=""
           {...register("passportNumber", {
             required: "Passport number is required",
           })}
@@ -104,7 +106,7 @@ const StepOne = () => {
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-light text-gray-700">
             Email
           </label>
           {errors.email && (
@@ -116,14 +118,14 @@ const StepOne = () => {
         <input
           className="w-full p-2 border rounded"
           type="email"
-          placeholder="Email"
+          placeholder=""
           {...register("email", { required: "Email is required" })}
         />
       </div>
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-light text-gray-700">
             Country of Residence
           </label>
           {errors.countryOfResidence && (
@@ -133,12 +135,12 @@ const StepOne = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full p-2 h-11 border rounded"
           {...register("countryOfResidence", {
             required: "Country of residence is required",
           })}
         >
-          <option value="">Country of Residence</option>
+          <option value="">Please Select</option>
           <option value="USA">USA</option>
           <option value="Canada">Canada</option>
           <option value="UK">UK</option>
@@ -148,7 +150,7 @@ const StepOne = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-sm font-light text-gray-700">
           Are you holding any other nationality?
         </label>
         <div className="flex items-center space-x-4">
@@ -181,12 +183,12 @@ const StepOne = () => {
 
         {watch("otherNationality") === "Yes" && (
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-light text-gray-700">
               Please specify the country name
             </label>
             <input
               className="w-full p-2 border rounded"
-              placeholder="Please specify the country name"
+              placeholder=""
               {...register("otherNationalityCountry", {
                 required:
                   "Country name is required if holding another nationality",
@@ -202,7 +204,7 @@ const StepOne = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-sm font-light text-gray-700">
           Are you a resident of any other countries?
         </label>
         <div className="flex items-center space-x-4">
@@ -234,12 +236,12 @@ const StepOne = () => {
         )}
         {watch("residentOtherCountries") === "Yes" && (
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-light text-gray-700">
               Please specify the country name
             </label>
             <input
               className="w-full p-2 border rounded"
-              placeholder="Please specify the country name"
+              placeholder=""
               {...register("residentOtherCountriesName", {
                 required:
                   "Country name is required if resident of another country",

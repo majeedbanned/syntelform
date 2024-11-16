@@ -9,7 +9,9 @@ const StepThree = () => {
 
   return (
     <div className="space-y-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-      <h2 className="text-xl font-semibold">3. Profession</h2>
+      <h2 className="text-xl text-blue-600 border-[0px] flex items-center font-semibold">
+        Profession
+      </h2>
 
       <div>
         <div className="flex flex-row">
@@ -23,7 +25,7 @@ const StepThree = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full  h-11 p-2 border rounded"
           {...register("Employment", {
             required: "Employment details are required",
           })}

@@ -10,9 +10,11 @@ const StepSix = () => {
   return (
     <div className="space-y-4 grid grid-cols-1 md:grid-cols-3 gap-4">
       <div>
-        <h2 className="text-xl font-semibold">6.Trading Experience</h2>
-        8.1 How many times have you traded or invested the following products in
-        the last three years?
+        <h2 className="text-xl mb-5 text-blue-600 border-[0px] flex items-center font-semibold">
+          Trading Experience
+        </h2>
+        How many times have you traded or invested the following products in the
+        last three years?
       </div>
       <div>
         <div className="flex flex-row">
@@ -27,7 +29,7 @@ const StepSix = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full  h-11 p-2 border rounded"
           {...register("ExchangeTradedDerivatives", {
             required: "ExchangeTradedDerivatives details are required",
           })}
@@ -52,7 +54,7 @@ const StepSix = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full  h-11 p-2 border rounded"
           {...register("CounterDerivatives", {
             required: " details are required",
           })}
@@ -77,7 +79,7 @@ const StepSix = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full h-11  p-2 border rounded"
           {...register("mostlytraded", {
             required: "required",
           })}
@@ -122,7 +124,7 @@ const StepSix = () => {
         </div>
 
         <select
-          className="w-full p-2 border rounded"
+          className="w-full h-11  p-2 border rounded"
           {...register("independentlytraded", {
             required: " required",
           })}
@@ -148,7 +150,7 @@ const StepSix = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full h-11  p-2 border rounded"
           {...register("Previoustradingvolume", {
             required: "required",
           })}
@@ -173,7 +175,7 @@ const StepSix = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full h-11  p-2 border rounded"
           {...register("experienceintradingleverage", {
             required: "required",
           })}
@@ -200,7 +202,7 @@ const StepSix = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full h-11  p-2 border rounded"
           {...register("levelofeducation", {
             required: "required",
           })}

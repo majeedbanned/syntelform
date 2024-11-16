@@ -9,11 +9,13 @@ const Step2 = () => {
 
   return (
     <div className="space-y-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-      <h2 className="text-xl font-semibold">2. Residential Address</h2>
+      <h2 className="text-xl text-blue-600 border-[0px] flex items-center font-semibold">
+        Residential Address
+      </h2>
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-light text-gray-700">
             Building No. and Street:
           </label>
           {errors.BuildingNo && (
@@ -32,7 +34,7 @@ const Step2 = () => {
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-light text-gray-700">
             Town/City:
           </label>
           {errors.TownCity && (
@@ -49,7 +51,7 @@ const Step2 = () => {
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-light text-gray-700">
             State:
           </label>
           {errors.State && (
@@ -66,7 +68,7 @@ const Step2 = () => {
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-light text-gray-700">
             Country:
           </label>
           {errors.country && (
@@ -76,7 +78,7 @@ const Step2 = () => {
           )}
         </div>
         <select
-          className="w-full p-2 border rounded"
+          className="w-full  h-11 p-2 border rounded"
           {...register("country", {
             required: "required",
           })}
@@ -92,7 +94,7 @@ const Step2 = () => {
 
       <div>
         <div className="flex flex-row">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-light text-gray-700">
             P.O. Box:
           </label>
           {errors.POBox && (
@@ -108,7 +110,7 @@ const Step2 = () => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-sm font-light text-gray-700">
           Is the above-mentioned address your current residential address?
         </label>
         <div className="flex items-center space-x-4">
@@ -144,7 +146,7 @@ const Step2 = () => {
         <>
           <div>
             <div className="flex flex-row">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-light text-gray-700">
                 Current Building No. and Street:
               </label>
               {errors.cuBuildingNo && (
@@ -163,7 +165,7 @@ const Step2 = () => {
 
           <div>
             <div className="flex flex-row">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-light text-gray-700">
                 Current Town/City:
               </label>
               {errors.cuTownCity && (
@@ -180,7 +182,7 @@ const Step2 = () => {
 
           <div>
             <div className="flex flex-row">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-light text-gray-700">
                 Current State:
               </label>
               {errors.cuState && (
@@ -197,7 +199,7 @@ const Step2 = () => {
 
           <div>
             <div className="flex flex-row">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-light text-gray-700">
                 Current Country:
               </label>
               {errors.cucountry && (
@@ -207,7 +209,7 @@ const Step2 = () => {
               )}
             </div>
             <select
-              className="w-full p-2 border rounded"
+              className="w-full  h-11 p-2 border rounded"
               {...register("cucountry", {
                 required: " required",
               })}
@@ -223,7 +225,7 @@ const Step2 = () => {
 
           <div>
             <div className="flex flex-row">
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-light text-gray-700">
                 Current P.O. Box:
               </label>
               {errors.cuPOBox && (
