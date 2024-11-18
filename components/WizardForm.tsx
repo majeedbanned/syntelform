@@ -154,7 +154,7 @@ const WizardForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-screen-xl mx-auto p-4 bg-white rounded-lg shadow-md space-y-6"
       >
-        <div className="flex justify-between mb-4">
+        <div className="flex overflow-x-auto justify-between mb-4">
           <button
             type="button"
             onClick={() => setStep(1)}
